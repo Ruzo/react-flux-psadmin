@@ -31,18 +31,18 @@ var AuthorStore = objectAssign({}, EventEmitter.prototype, {
 
 // registration of action types and related steps with dispatcher
 Dispatcher.register(function(action){
-	// action is the payload sent by authorActions with type and data
+	// action is the payload dispatched by authorActions with actionType and data
 	switch(action.actionType){
-		case ActionTypes.INIT_DATA:
-			_authors = action.initialData.authors;
-			AuthorStore.emitChange();
+		case ActionTypes.INIT_DATA: // if actionType is constant INIT_DATA
+			_authors = action.initialData.authors; // set authors array to initial data
+			AuthorStore.emitChange(); // tell listeners that a change event just happened
 			break;
-		case ActionTypes.SAVE_AUTHOR:
-			_authors.push(action.author);
+		case ActionTypes.SAVE_AUTHOR: // actionType = SAVE_AUTHOR
+			_authors.push(action.author); // add new author from data property to array
 			AuthorStore.emitChange();
 			break;
 		case ActionTypes.DELETE_AUTHOR:
-			_.remove(_authors, function(author){
+			_.remove(_authors, function(author){ // use lodash remove function to remove author from array
 				return action.id === author.id;
 			});
 			AuthorStore.emitChange();

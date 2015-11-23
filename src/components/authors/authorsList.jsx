@@ -13,7 +13,8 @@ var AuthorsList = React.createClass({
 		this.props.deleteAuthor(id, e);
 	},
 	render: function(){
-	// Create a new array from prop 'authors' passed by parent component AuthorsPage
+	// Create each row from prop 'authors' passed by parent component AuthorsPage
+	// added 'Delete' link targetting handleClick which in turn uses deleteAuthor prop
 		var authorRow = function(author){
 			return (
 				<tr key={author.id}>
@@ -24,7 +25,7 @@ var AuthorsList = React.createClass({
 				</tr>
 			);
 		};
-        // Display a table while inserting JSX rows from new array 'authors'
+        // Display a table while inserting JSX rows by using authorRow through an array map
 		return (
 			<div>
 				<table className="table">
