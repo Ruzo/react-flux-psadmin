@@ -6,5 +6,7 @@ module.exports = keyMirror({
 	// null is put in place of the values in order to let keyMirror replace them with their respective keys
 	INIT_DATA: null,
 	SAVE_AUTHOR: null,
-	DELETE_AUTHOR: null
+	DELETE_AUTHOR: null,
+	SAVE_COURSE: null,
+	DELETE_COURSE: null
 });
