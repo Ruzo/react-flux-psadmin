@@ -17,14 +17,14 @@ var AuthorForm = React.createClass({
 				<h1>Add Author</h1>
 				<Input 	name="firstName"
 						label="First Name"
-						updateAuthor={this.props.updateAuthor}
+						updateValue={this.props.updateAuthor}
 						placeholder="Enter author's first name"
 						value={this.props.author.firstName}
 						error={this.props.errors.firstName}
 				/>
 				<Input 	name="lastName"
 						label="Last Name"
-						updateAuthor={this.props.updateAuthor}
+						updateValue={this.props.updateAuthor}
 						placeholder="Enter author's last name"
 						value={this.props.author.lastName}
 						error={this.props.errors.lastName}
