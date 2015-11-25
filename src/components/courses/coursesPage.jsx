@@ -12,6 +12,15 @@ var CoursesPage = React.createClass({
 			courses: CourseStore.getAllCourses()
 		};
 	},
+	componentWillMount: function(){
+		CourseStore.addChangeListener(this._onChange);
+	},
+	componentWillUnmount: function(){
+		CourseStore.removeChangeListener(this._onChange);
+	},
+	_onChange: function(){
+		this.setState({course: CourseStore.getAllCourses()});
+	},
 	render: function(){
 		return (
 			<div>

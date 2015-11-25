@@ -16,18 +16,18 @@ var Option = React.createClass({
 		var wrapperClass = (this.props.error && this.props.error.length > 0) ? 'form-group has-error' : 'form-group';
 		var eachOption = function(option){
 			return (
-				<option value={option.value}>{option.label}</option>
+				<option key={option.id} value={option.id}>{option.name}</option>
 			);
-		},
+		};
 		return (
 			<div className={wrapperClass}>
 				<label htmlFor={this.props.name}>{this.props.label}</label>
 				<div className="field">
 					<select required
 							name={this.props.name}
+							value={this.props.value}
 							className="form-control"
 							ref={this.props.name}
-							value={this.props.value}
 							onChange={this.props.updateValue}
 					>
 						{this.props.options.map(eachOption, this)}

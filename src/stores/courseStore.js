@@ -43,6 +43,11 @@ Dispatcher.register(function(action){
 				});
 				CourseStore.emitChange();
 				break;
+		case	ActionTypes.UPDATE_COURSE:
+				var index = _.findIndex(_courses, {id: action.course.id});
+				_courses[index] = action.course;
+				CourseStore.emitChange();
+				break;
 				default: // no op
 	}
 });

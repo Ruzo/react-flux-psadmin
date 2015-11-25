@@ -22,6 +22,15 @@ var CourseActions = {
 			actionType: ActionTypes.DELETE_COURSE,
 			id: id
 		});
+	},
+	
+	updateCourse: function(course){
+		CourseApi.saveCourse(course);
+		
+		Dispatcher.dispatch({
+			actionType: ActionTypes.UPDATE_COURSE,
+			course: course
+		});
 	}
 };
 

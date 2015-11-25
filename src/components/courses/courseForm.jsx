@@ -3,7 +3,6 @@
 var React = require('react')
 ,	Input = require('../common/textinput.jsx')
 ,	Select = require('../common/selectinput.jsx')
-, AuthorStore = require('../../stores/authorStore')
 ;
 
 var CourseForm = React.createClass({
@@ -11,19 +10,8 @@ var CourseForm = React.createClass({
 		updateCourse: React.PropTypes.func.isRequired,
 		onSave: React.PropTypes.func.isRequired,
 		course: React.PropTypes.object.isRequired,
+		authorOptions: React.PropTypes.array.isRequired,
 		errors: React.PropTypes.object
-	},
-	getInitialState: function(){
-		authorOptions: AuthorStore.getAllAuthors.map(eachAuthorName, this)
-	},
-	eachAuthorName: function(author){
-		var name = author.firstName + " " + author.lastName;
-		var option = {
-			value: author,
-			label: name
-		};
-		console.log('Author option' + option);
-		return option;
 	},
 	render: function(){
 		return (
@@ -45,9 +33,9 @@ var CourseForm = React.createClass({
 				/>
 				<Select name="author"
 						label="Author"
+						value={this.props.course.author.id}
 						updateValue={this.props.updateCourse}
-						options={this.state.authorOptions}
-						value={this.props.course.author}
+						options={this.props.authorOptions}
 						error={this.props.errors.author}
 				/>
 				<Input 	name="length"

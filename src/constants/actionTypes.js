@@ -8,5 +8,6 @@ module.exports = keyMirror({
 	SAVE_AUTHOR: null,
 	DELETE_AUTHOR: null,
 	SAVE_COURSE: null,
-	DELETE_COURSE: null
+	DELETE_COURSE: null,
+	UPDATE_COURSE: null
 });
