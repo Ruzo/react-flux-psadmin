@@ -6,7 +6,7 @@ var _ = require('lodash');
 
 //This would be performed on the server in a real app. Just stubbing in.
 var _generateId = function(course) {
-	return course.title.replace(' ', '-');
+	return course.title.replace(/[^A-Za-z0-9_]/g, '-').toLowerCase();
 };
 
 var _clone = function(item) {

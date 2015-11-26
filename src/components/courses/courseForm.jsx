@@ -7,7 +7,7 @@ var React = require('react')
 
 var CourseForm = React.createClass({
 	propTypes: {
-		updateCourse: React.PropTypes.func.isRequired,
+		updateValue: React.PropTypes.func.isRequired,
 		onSave: React.PropTypes.func.isRequired,
 		course: React.PropTypes.object.isRequired,
 		authorOptions: React.PropTypes.array.isRequired,
@@ -19,14 +19,14 @@ var CourseForm = React.createClass({
 				<h1>Add Course</h1>
 				<Input 	name="title"
 						label="Title"
-						updateValue={this.props.updateCourse}
+						updateValue={this.props.updateValue}
 						placeholder="Enter course's title"
 						value={this.props.course.title}
 						error={this.props.errors.title}
 				/>
 				<Input 	name="watchHref"
 						label="Video URL"
-						updateValue={this.props.updateCourse}
+						updateValue={this.props.updateValue}
 						placeholder="Enter course's video URL"
 						value={this.props.course.watchHref}
 						error={this.props.errors.watchHref}
@@ -34,20 +34,20 @@ var CourseForm = React.createClass({
 				<Select name="author"
 						label="Author"
 						value={this.props.course.author.id}
-						updateValue={this.props.updateCourse}
+						updateValue={this.props.updateValue}
 						options={this.props.authorOptions}
 						error={this.props.errors.author}
 				/>
 				<Input 	name="length"
 						label="Length"
-						updateValue={this.props.updateCourse}
+						updateValue={this.props.updateValue}
 						placeholder="Enter course's length"
 						value={this.props.course.length}
 						error={this.props.errors.length}
 				/>
 				<Input 	name="category"
 						label="Category"
-						updateValue={this.props.updateCourse}
+						updateValue={this.props.updateValue}
 						placeholder="Enter course's category"
 						value={this.props.course.category}
 						error={this.props.errors.category}

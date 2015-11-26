@@ -5,6 +5,10 @@ var React = require('react')
 ;
 
 var CoursesList = React.createClass({
+	handleClick: function(id){
+		// e.preventDefault();
+		this.props.deleteCourse(id);
+	},
 	render: function(){
 		var courseRow = function(course){
 			return (
@@ -15,6 +19,7 @@ var CoursesList = React.createClass({
 					<td>{course.author.name}</td>
 					<td>{course.length}</td>
 					<td>{course.category}</td>
+					<td><button className="btn btn-default btn-xs" onClick={this.handleClick.bind(this, course.id)}>Delete</button></td>
 				</tr>
 			);
 		};
@@ -28,6 +33,7 @@ var CoursesList = React.createClass({
 						<th>Author</th>
 						<th>Length</th>
 						<th>Category</th>
+						<th></th>
 					</thead>
 					<tbody>
 						{this.props.courses.map(courseRow, this)}

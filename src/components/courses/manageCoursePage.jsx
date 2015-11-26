@@ -4,9 +4,10 @@ var React = require('react')
 ,	CourseForm = require('./courseForm.jsx')
 ,	CourseStore = require('../../stores/courseStore')
 ,	CourseActions = require('../../actions/courseActions')
-, AuthorStore = require('../../stores/authorStore')
+, 	AuthorStore = require('../../stores/authorStore')
 ,	Router = require('react-router')
 ,	_ = require('lodash')
+,	toastr = require('toastr')
 ;
 
 var ManageCoursePage = React.createClass({
@@ -15,11 +16,29 @@ var ManageCoursePage = React.createClass({
 	],
 	getInitialState: function(){
 		return {
-			authorOptions: AuthorStore.getAllAuthors().map(this.eachAuthorName, this),
+			authorOptions: [],
 			exists: false,
-			course: this.initialCourse(),
+			course: {
+				id: "",
+				title: "",
+				watchHref: "",
+				author: "",
+				length: "",
+				category: ""
+			},
 			errors: {}
 		};
+	},
+	componentWillMount: function(){
+		var id = this.props.params.courseId;
+		if(id){
+			this.setState({
+				exists: true,
+				course: CourseStore.getCourseById(id)
+			});
+		}
+		this.setState({authorOptions: AuthorStore.getAllAuthors().map(this.eachAuthorName, this)});
+		
 	},
 	eachAuthorName: function(author){
 		var name = author.firstName + " " + author.lastName;
@@ -29,29 +48,9 @@ var ManageCoursePage = React.createClass({
 		};
 		return option;
 	},
-	initialCourse: function(){
-		var newCourse = {
-			id: "",
-			title: "",
-			watchHref: "",
-			author: "",
-			length: "",
-			category: ""
-		};
-		var id = this.props.params.courseId;
-		if(id){
-			this.setState({exists: true});
-			return CourseStore.getCourseById(id);
-		}
-		else{
-			return newCourse;
-		}
-	},
-	updateCourse: function(e){
+	updateValue: function(e){
 		var value = e.target.value;
-		console.log('value: ' + value);
 		var field = e.target.name;
-		console.log('field: ' + field);
 		if(field === "author"){
 			this.state.course[field] = _.find(this.state.authorOptions, {id: value});
 		}
@@ -64,9 +63,11 @@ var ManageCoursePage = React.createClass({
 		e.preventDefault();
 		if(this.state.exists){
 			CourseActions.updateCourse(this.state.course);
+			toastr.success('Course updated!');
 		}
 		else{
 			CourseActions.saveCourse(this.state.course);
+			toastr.success('Course saved!');
 		}
 		this.transitionTo('courses');
 	},
@@ -75,7 +76,7 @@ var ManageCoursePage = React.createClass({
 			<CourseForm 
 				course = {this.state.course}
 				authorOptions = {this.state.authorOptions}
-				updateCourse = {this.updateCourse}
+				updateValue = {this.updateValue}
 				onSave = {this.saveCourse}
 				errors = {this.state.errors}
 			/>
