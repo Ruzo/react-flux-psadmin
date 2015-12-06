@@ -1,0 +1,16 @@
+{
+    "version": "0.1.0",
+    "command": "gulp", // external task manager command
+    "isShellCommand": true,
+    "args": [
+        "--no-color"
+    ],
+    "tasks": [
+        {
+            "taskName": "Build only JS", // Give a new task name
+            "suppressTaskName": true, // Do not try to run the task name as the gulp task
+            "args": ["js", "eslint", "open", "watch"], // run these gulp tasks
+            "problemMatcher": "$eslint-stylish" // use the errors output inside the editor
+        }
+    ]
+}

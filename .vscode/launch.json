@@ -25,6 +25,16 @@
 			"type": "node",
 			"request": "attach",
 			"port": 5858
+		},
+		{
+			"name": "Launch Gulp Debugger",
+			"type": "node",
+			"request": "launch",
+			"program": "node_modules/gulp/bin/gulp.js",
+			"stopOnEntry": true,
+			"runtimeArgs": [
+				"--nolazy"
+			]
 		}
 	]
 }
