@@ -15,7 +15,7 @@ var AuthorActions = {
 			actionType: ActionTypes.SAVE_AUTHOR,
 			author: newAuthor
 		});
-	}
+	},
 	deleteAuthor: function(id){
 		AuthorApi.deleteAuthor(id);
 
