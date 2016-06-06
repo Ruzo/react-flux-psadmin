@@ -5,10 +5,10 @@
 			"name": "Launch",
 			"type": "node",
 			"request": "launch",
-			"program": "index.js",
+			"program": "${workspace}/index.js",
 			"stopOnEntry": false,
 			"args": [],
-			"cwd": ".",
+			"cwd": "${workspace}",
 			"runtimeExecutable": null,
 			"runtimeArgs": [
 				"--nolazy"
@@ -30,7 +30,7 @@
 			"name": "Launch Gulp Debugger",
 			"type": "node",
 			"request": "launch",
-			"program": "node_modules/gulp/bin/gulp.js",
+			"program": "${workspace}/node_modules/gulp/bin/gulp.js",
 			"args": ["eslint"],
 			"stopOnEntry": true,
 			"runtimeArgs": [
